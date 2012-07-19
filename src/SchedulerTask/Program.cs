@@ -11,26 +11,26 @@ namespace SchedulerTask
     {
         static void Main(string[] args)
         {
-            SchedulerJob test = new SchedulerJob();
-            test.Execute(null);
+            //SchedulerJob test = new SchedulerJob();
+            //test.Execute(null);
 
-            //// construct a scheduler factory
-            //ISchedulerFactory schedFact = new StdSchedulerFactory();
+            // construct a scheduler factory
+            ISchedulerFactory schedFact = new StdSchedulerFactory();
 
-            //// get a scheduler
-            //IScheduler sched = schedFact.GetScheduler();
-            //sched.Start();
+            // get a scheduler
+            IScheduler sched = schedFact.GetScheduler();
+            sched.Start();
 
-            //IJobDetail job = JobBuilder.Create<SchedulerJob>()
-            // .WithIdentity("job1", "group1")
-            // .Build();
+            IJobDetail job = JobBuilder.Create<SchedulerJob>()
+             .WithIdentity("job1", "group1")
+             .Build();
 
-            //ITrigger trigger = TriggerBuilder.Create()
-            //.WithIdentity("trigger1", "group1")
-            //.WithCronSchedule("0 20 17 ? * *")
-            //.Build();
+            ITrigger trigger = TriggerBuilder.Create()
+            .WithIdentity("trigger1", "group1")
+            .WithCronSchedule("0 40 17 ? * *")
+            .Build();
 
-            //sched.ScheduleJob(job, trigger);
+            sched.ScheduleJob(job, trigger);
         }
     }
 }

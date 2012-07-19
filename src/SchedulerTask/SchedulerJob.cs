@@ -12,6 +12,7 @@ namespace SchedulerTask
     {
         public void Execute(IJobExecutionContext context)
         {
+            Console.WriteLine("EnterJob");
             MailServiceClient client = new MailServiceClient();
             client.SendMail(ConfigurationManager.AppSettings["MAILING_LIST"], "<html><body>Test</body><html>");
         }
