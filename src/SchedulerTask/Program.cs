@@ -24,7 +24,7 @@ namespace SchedulerTask
 
             ITrigger trigger = TriggerBuilder.Create()
             .WithIdentity("trigger1", "group1")
-            .WithCronSchedule("0 0 16 ? * *")
+            .WithCronSchedule("0 1 16 ? * *")
             .Build();
 
             sched.ScheduleJob(job, trigger);
