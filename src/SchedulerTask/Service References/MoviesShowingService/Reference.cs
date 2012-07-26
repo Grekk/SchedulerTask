@@ -29,6 +29,9 @@ namespace SchedulerTask.MoviesShowingService {
         private System.Collections.Generic.List<SchedulerTask.MoviesShowingService.TinyMovie> GetMovieByWeekField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double NbWeekField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private SchedulerTask.MoviesShowingService.PagedListOfTinyMoviel_P5pM7zr TinyMoviesField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -63,6 +66,19 @@ namespace SchedulerTask.MoviesShowingService {
                 if ((object.ReferenceEquals(this.GetMovieByWeekField, value) != true)) {
                     this.GetMovieByWeekField = value;
                     this.RaisePropertyChanged("GetMovieByWeek");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double NbWeek {
+            get {
+                return this.NbWeekField;
+            }
+            set {
+                if ((this.NbWeekField.Equals(value) != true)) {
+                    this.NbWeekField = value;
+                    this.RaisePropertyChanged("NbWeek");
                 }
             }
         }

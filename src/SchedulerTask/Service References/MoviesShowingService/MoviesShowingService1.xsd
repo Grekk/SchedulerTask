@@ -4,6 +4,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="CurrentWeek" type="xs:int" />
       <xs:element minOccurs="0" name="GetMovieByWeek" nillable="true" type="tns:ArrayOfTinyMovie" />
+      <xs:element minOccurs="0" name="NbWeek" type="xs:double" />
       <xs:element minOccurs="0" name="TinyMovies" nillable="true" type="tns:PagedListOfTinyMoviel_P5pM7zr" />
     </xs:sequence>
   </xs:complexType>
