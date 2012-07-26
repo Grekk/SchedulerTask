@@ -7,6 +7,7 @@ using Quartz;
 using Quartz.Impl;
 using System.Threading;
 using SchedulerTask.MailService;
+using SchedulerTask.MoviesShowingService;
 
 namespace SchedulerTask
 {
@@ -21,8 +22,23 @@ namespace SchedulerTask
                 {
                     if (!isMailSent)
                     {
+                        string url = ConfigurationManager.AppSettings["MOVIE_URL"];
+                        string htmlContent = "<html><body><p>Voici la liste des films conseillés qui sortent aujourd'hui:</p><section>";
+
+                        IMoviesShowingService movies = new MoviesShowingServiceClient();
+                        IList<TinyMovie> movieList = movies.GetBestWeekMovies();
+                        foreach (TinyMovie movie in movieList)
+                        {
+                            htmlContent += "<section style=\"width: 200px;height: 500px;float: left;padding: 10px;\">";
+                            htmlContent += "<a href=\"" + url + movie.ApiId + "\"><img src=\"" + movie.PictureUrl + "\" height=\"193\" width=\"143\"/></a>";
+                            htmlContent += "</section>";
+                        }
+
+                        htmlContent += "</section></body></html>";
+
                         MailServiceClient client = new MailServiceClient();
-                        client.SendMail(ConfigurationManager.AppSettings["MAILING_LIST"], "<html><body>Test</body><html>");
+
+                        client.SendMail(ConfigurationManager.AppSettings["MAILING_LIST"], htmlContent);
                         isMailSent = true;
                     }
                     else
